@@ -17,7 +17,7 @@ namespace Assets.Scripts.Animation
         {
             _sequence = DOTween.Sequence();
 
-            _sequence.Append(transform.DOScale(Vector3.one, _timeGrow));
+            _sequence.Append(transform.DOScale(new Vector3(0.6f,0.6f,0.6f), _timeGrow));
 
             _sequence.AppendCallback(() => { CallBack(); });
         }
@@ -26,14 +26,7 @@ namespace Assets.Scripts.Animation
         {
             HarvestedAction?.Invoke(true);
         }
-        public void Harvested(Vector3 pos)
-        {
-            _harvestedSequence = DOTween.Sequence();
 
-            _harvestedSequence.Append(transform.DOMoveY(4f, 0.25f));
-            _harvestedSequence.Join(transform.DOScale(0.2f, 0.2f));
-            _harvestedSequence.Append(transform.DOMove(pos, 0.25f));
-        }
 
         private void OnDestroy()
         {

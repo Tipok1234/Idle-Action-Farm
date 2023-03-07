@@ -50,14 +50,16 @@ namespace Assets.Scripts.Model
             _cornAnimation.GrowAnimation();
         }
 
-        public void HarvestedAnimation(Vector3 pos)
-        {
-            _cornAnimation.Harvested(pos);
-        }
+        //public void HarvestedAnimation(Vector3 pos)
+        //{
+        //    _cornAnimation.Harvested(pos);
+        //}
+
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.tag == "Player")
             {
+                Debug.LogError("PLAYER ENTER");
                 DeadAction?.Invoke(this);
             }
         }

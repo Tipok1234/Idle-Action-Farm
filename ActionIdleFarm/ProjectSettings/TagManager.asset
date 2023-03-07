@@ -6,6 +6,8 @@ TagManager:
   tags:
   - WareHouse
   - Corn
+  - Pickaxe
+  - CornBag
   layers:
   - Default
   - TransparentFX

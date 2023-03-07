@@ -12,36 +12,52 @@ namespace Assets.Scripts.Model
         [SerializeField] private PlayerModel _playerModel;
         [SerializeField] private CornPlant _cornPlant;
         [SerializeField] private int _countCornPlant;
+        [SerializeField] private PickaxeModel _pickaxeModel;
 
         private List<CornPlant> _cornPlants = new List<CornPlant>();
+        private CornPlant _corn;
 
         private void Start()
         {
+            _pickaxeModel.ExitMowAction += OnExitMow;
+
             for (int i = 0; i < _countCornPlant; i++)
             {
                 InstantiateCorn(CornPosition());
             }
         }
 
+        private void OnDestroy()
+        {
+            _pickaxeModel.ExitMowAction += OnExitMow;
+        }
+
+        private void OnExitMow()
+        {
+            _corn.DeadAction -= OnDead;
+            CornHarvestedAction?.Invoke(_corn);
+            StartCoroutine(SpawnCorn(_corn.transform.position));
+            _cornPlants.Remove(_corn);
+            Destroy(_corn.gameObject);
+        }
+
+
         private void OnDead(CornPlant cornPlant)
         {
-            Debug.LogError("COUNT: " + _playerModel.MyCorn + _playerModel.CapacityCornBag);
+            _corn = cornPlant;
 
-            if (cornPlant.IsHarvested && _playerModel.MyCorn <= _playerModel.CapacityCornBag)
+            if(_corn.IsHarvested && _playerModel.MyCorn <= _playerModel.CapacityCornBag)
             {
-                if (_cornPlants.Contains(cornPlant))
+                if(_cornPlants.Contains(_corn))
                 {
-                    CornHarvestedAction?.Invoke(cornPlant);
-                    StartCoroutine(SpawnCorn(cornPlant.transform.position));
-                    cornPlant.DeadAction -= OnDead;
-                    _cornPlants.Remove(cornPlant);
-                    Destroy(cornPlant.gameObject, 0.5f);
+                    _pickaxeModel.SetActiveObject(true);
+                    _playerModel.PlayMowAnimation();
                 }
             }
         }
         private IEnumerator SpawnCorn(Vector3 position)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(10f);
 
             InstantiateCorn(position);
         }

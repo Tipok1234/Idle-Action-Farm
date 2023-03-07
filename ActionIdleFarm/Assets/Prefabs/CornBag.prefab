@@ -12,9 +12,12 @@ GameObject:
   - component: {fileID: 1657596930580480094}
   - component: {fileID: 2059800156860777386}
   - component: {fileID: 1810773787199114814}
+  - component: {fileID: -3789438759075235884}
+  - component: {fileID: 5940789426384265430}
+  - component: {fileID: 7987489212972692668}
   m_Layer: 0
   m_Name: CornBag
-  m_TagString: Untagged
+  m_TagString: CornBag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5952902231771441192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -90,8 +93,51 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5952902231771441192}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3789438759075235884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5952902231771441192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f000c44969d6b384083846c1f78af5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shakeAnimation: {fileID: 5940789426384265430}
+  _boxCollider: {fileID: 1810773787199114814}
+--- !u!114 &5940789426384265430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5952902231771441192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04dfc1a2c330db149b00729b5078f0e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boxCollider: {fileID: 1810773787199114814}
+  _backpackTransform: {fileID: 3086450106828198825}
+  _duration: 1
+  _angle: 5
+--- !u!114 &7987489212972692668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5952902231771441192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a810dacbd369044ba77044d2bc83ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeGrow: 0.25
